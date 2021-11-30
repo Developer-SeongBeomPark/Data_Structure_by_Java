@@ -1,1 +1,75 @@
+## Override
+<pre><code>
+String one = "hello world";
+String two = "hello world";
+//문자열 비교
+if(one.equals(two))
+  System.out.println("they are the same");
+</code></pre>
 
+이때, equals 메소드는 문자열을 비교하기 때문에 같다라고 답할 것이다.
+
+<pre><code>
+Object one = "hello world";
+Object two = "hello world";
+//객체 비교
+if(one.equals(two))
+  System.out.println("they are the same");
+</code></pre>
+
+이때, equals 메소드는 객체들의 메모리 주소를 비교하기 때문에 다르다고 답할 것이다.
+
+이처럼, 객체 클래스의 equals 메소드는 메모리 주소를 비교하지만, 문자열 클래스의 equals를 오버라이드하면 문자열을 비교할 수 있다.
+
+
+## Comparable Interface
+객체에서 원하는 자료형을 비교하기 위해 Comparable Interface를 활용할 수 있다.<br>
+이를 위해 compareTo 함수를 사용한다. a.compareTo(b)에서 a가 b보다 작을 경우 0보다 작은 값을, a가 b보다 클 경우 0보다 큰 값을, a와 b가 같을 경우 0을 return한다
+
+ex) if(((Comparable<T> data).compareTo(obj) == 0)
+
+
+## Generic Programming
+정의 : 다양한 자료형의 객체에 대해 작성한 코드를 재사용한다는 객체 지향 기법이다.
+<pre><code>
+//정렬 알고리즘 예시
+public class ss{
+  public int[] superSort(int[] array){
+    //.....sort.....
+    return array;
+    }
+  }
+</code></pre>
+
+만약 int[]가 아닌 String[]이나 Object[]에 대한 Sort 알고리즘이 필요하다면 위의 코드의 자료형만 바꿔주면 사용가능하다.<br>
+하지만, 예를 들어, Object[]에서 원소의 자료형이 다를 경우 코드를 일일이 작성하기 번거로울 수 있다.
+
+## Paramaterized Types
+Generic Programming에서 발생한 한계점을 해결하기 위한 방법으로 Paramaterized Types가 있다.<br>
+ex)<br>
+<pre><code>
+//클래스
+public class LinkedList
+public class LinkedList<E>
+
+//함수
+public void addFirst(String S)
+public void addFirst(E obj)
+
+public String removeFirst()
+public E removeFirst()
+
+//Generic Node(데이터 + 포인터)
+class Node<E>{
+  E data;
+  Node<E> next;
+  public Node(E obj){
+    data = obj;
+    next  null;
+    }
+  }
+  
+//배열
+E[] stroage = (E[]) new Object[size];
+E[] stroage = new E[size]; --> 컴파일 X
+</code></pre>
